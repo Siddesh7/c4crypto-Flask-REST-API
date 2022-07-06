@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, jsonify, render_template
 import requests
 from flask_cors import CORS
@@ -94,7 +95,7 @@ def createInstance():
     return data
 
 
-@ app.route("/")
+@ app.route("/",methods=["GET"])
 def index():
     d = createInstance()
     re = {
