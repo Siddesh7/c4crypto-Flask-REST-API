@@ -95,7 +95,7 @@ def createInstance():
     return data
 
 
-@ app.route("/",methods=["GET"])
+@ app.route("/", methods=["GET"])
 def index():
     d = createInstance()
     re = {
@@ -107,4 +107,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8088)
+    app.run()
