@@ -1,4 +1,4 @@
-from crypt import methods
+
 from flask import Flask, jsonify, render_template
 import requests
 from flask_cors import CORS
@@ -26,7 +26,20 @@ crypto = {
     'XLM': 'Stellar',
     'NEAR': 'Near Protocol',
     'PUSH': 'EPNS',
-    'SHIB': 'Shiba Inu'
+    'SHIB': 'Shiba Inu',
+    'DOT': 'Polkadot',
+    'TRX': 'Tron',
+    'ETC': 'Ethereum Classic',
+    'LTC': 'Litecoin',
+    'LINK': 'Chainlink',
+    'ATOM': 'Cosmos',
+    'ALGO': 'Algorand',
+    'VET': 'VeChain',
+    'FIL': 'Filecoin',
+    'MANA': 'Decentraland',
+    'SAND': 'Sandbox'
+
+
 
 }
 exchanges = ["WazirX", "CoinDCX", "Bitbns", "Zebpay"]
@@ -34,7 +47,7 @@ exchanges = ["WazirX", "CoinDCX", "Bitbns", "Zebpay"]
 
 def exLink(ex, name):
     if ex == "WazirX":
-        return "https://wazirx.com/exchange/%s" % (name)
+        return "https://wazirx.com/exchange/%s" % (name.replace("INR", "-INR"))
     elif (ex == "CoinDCX"):
         return "https://coindcx.com/trade/%s" % name
     elif (ex == "Bitbns"):
@@ -72,6 +85,8 @@ def createInstance():
                 if(c['pair'] == zepFormat):
                     if float(c['buy']) > 0:
                         zep = c['buy']
+                else:
+                    zep = "999999999"
         except:
             zep = "99999999"
         priceData = [wrx, dcx, bns, zep]
@@ -107,4 +122,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
